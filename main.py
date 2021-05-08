@@ -9,7 +9,7 @@ translator = Translator()
 bot = telebot.TeleBot('1860568763:AAG_fCsw53jVv6Ch4WzcItUDWCog3b2H_E0')
 
 
-@bot.message_handler(commands=['help', 'start'])
+@bot.message_handler(commands=['start'])
 def help_command(message):
 
     keyboard = telebot.types.InlineKeyboardMarkup()
@@ -66,7 +66,7 @@ def russian_translation(message):
     keyboard = telebot.types.InlineKeyboardMarkup()
     try:
         req = requests.get("https://api.dictionaryapi.dev/api/v2/entries/{}/{}".format('en_US', result.text))
-        keyboard.row((telebot.types.InlineKeyboardButton("Произношение (Если слово одно): ",
+        keyboard.row((telebot.types.InlineKeyboardButton("Произношение: ",
                                                          url=req.json()[0]["phonetics"][0]["audio"])))
     except:
         keyboard = telebot.types.InlineKeyboardMarkup()
